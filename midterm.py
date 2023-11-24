@@ -62,8 +62,7 @@ while True:
     print("8. Import Tabs")
     print("9. Exit")
     choice = input("Enter your choice (1-9): ")
-    if choice is None:
-        continue
+    print("HI")
     
     if choice == '1':
         title = input("Enter the title:")
