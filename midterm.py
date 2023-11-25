@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import json
+
 
 #choice 1
 class Tab:
@@ -88,6 +90,38 @@ class TabManager:
                     self.tabs[j],self.tabs[j+1]= self.tabs[j+1],self.tabs[j]
         print("Your tabs have been sorted.")
         
+    
+    def save_tabs_to_file(self, file_path):
+        if not self.tabs:
+            print("No tabs to save.")
+            return
+
+        try:
+            with open(file_path, 'w') as file:
+                tabs_data = []
+
+                # Helper function to recursively gather tab data
+                def gather_tab_data(tab):
+                    tab_data = {
+                        'title': tab.title,
+                        'url': tab.url,
+                        'content': getattr(tab, 'content', None),  # Include content if available
+                        'children': [gather_tab_data(child) for child in tab.children]
+                    }
+                    return tab_data
+
+                # Gather data for each tab in self.tabs
+                for tab in self.tabs:
+                    tabs_data.append(gather_tab_data(tab))
+
+                # Write the gathered tab data to the file in JSON format
+                json.dump(tabs_data, file, indent=2)
+
+            print("Tabs saved to",file_path,".")
+
+        except Exception as e:
+            print("Error saving tabs:",e)
+    
 tab_manager = TabManager()    
 
 while True:
@@ -139,7 +173,8 @@ while True:
     elif choice == '6':
         tab_manager.sortingTabs()
     elif choice == '7':
-        print()
+        file_path = input("Enter the file path to save")
+        tab_manager.save_tabs_to_file(file_path)
     elif choice == '8':
         print()
     elif choice == '9':
