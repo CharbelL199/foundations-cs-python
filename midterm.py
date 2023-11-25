@@ -57,7 +57,19 @@ class TabManager:
             print(indent + tab.title)
             if tab.children:
                 self.print_all_tabs(tab.children, indent + "  ")
-
+                
+   
+    def sortingTabs(self):
+        if not self.tabs:
+            print("No tabs to sort")
+            return
+        
+        lengthTabs = len(self.tabs)
+        for i in range(lengthTabs-1):
+            for j in range(0,lengthTabs-i-1):
+                if self.tabs[j].title > self.tabs[j+1].title:
+                    self.tabs[j],self.tabs[j+1]= self.tabs[j+1],self.tabs[j]
+                    print("Your tabs have been sorted.")
 tab_manager = TabManager()    
 
 while True:
@@ -107,7 +119,7 @@ while True:
         except ValueError:
             print("Invalid input.")
     elif choice == '6':
-        print("Exiting the program.")
+        tab_manager.sortingTabs()
     elif choice == '7':
         print()
     elif choice == '8':
