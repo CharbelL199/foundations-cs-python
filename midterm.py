@@ -12,19 +12,22 @@ class TabManager:
     def __init__(self):
         self.tabs=[]
     
-    def add_tab(self,title,url):
+    def add_tab(self,title,url,content=None,parent_index=None):
         new_tab = Tab(title, url)
         self.tabs.append(new_tab)
         print("Tab",title,"with url",url,"added successfully.")
-    
+        if parent_index is not None:
+            parent_tab = self.tabs[parent_index]
+            parent_tab.children.append(new_tab)
+
     #choice 2    
     def close_tab(self,index=None):
        if index is None or not (0 <= index < len(self.tabs)):
            closed_tab = self.tabs.pop()
-           print(f"Closed tab '{closed_tab.title}' with URL '{closed_tab.url}'.")
+           print("Closed tab ",closed_tab.title,"with URL",closed_tab.url,".")
        else:
            closed_tab = self.tabs.pop(index)
-           print(f"Closed tab '{closed_tab.title}' with URL '{closed_tab.url}'.")
+           print("Closed tab ",closed_tab.title,"with URL",closed_tab.url,".")
            
     #choice 3       
     def display_tab_content(self, index=None):
@@ -37,16 +40,23 @@ class TabManager:
                 tab_to_display = self.tabs[-1]
             else:
                 tab_to_display = self.tabs[index]
+            
+            print("Tabs:",tab_to_display.title,",URL:",tab_to_display.url)
+            print("Content",tab_to_display.content)
                 
-                         
-    def print_all_tabs(self,tabs=None,indent=""):
+                        
+    def print_all_tabs(self, tabs=None, indent=""):
         if tabs is None:
             tabs = self.tabs
-        
+
+        if not tabs:
+            print("No tabs to display.")
+            return
+
         for tab in tabs:
-            print(indent+tab.title)
+            print(indent + tab.title)
             if tab.children:
-                self.print_all_tabs(tab.children,indent + " ")
+                self.print_all_tabs(tab.children, indent + "  ")
 
 tab_manager = TabManager()    
 
@@ -62,8 +72,6 @@ while True:
     print("8. Import Tabs")
     print("9. Exit")
     choice = input("Enter your choice (1-9): ")
-    if choice is None:
-        continue
     
     if choice == '1':
         title = input("Enter the title:")
@@ -90,7 +98,14 @@ while True:
     elif choice == '4':
         tab_manager.print_all_tabs()
     elif choice == '5':
-        print()
+        parent_input = input("Enter the index:")
+        try:
+            parent_index = int(parent_input)
+            title = input("Enter the title of nested:")
+            content = input("Enter the url of nested:")
+            tab_manager.add_tab(title, content, parent_index)
+        except ValueError:
+            print("Invalid input.")
     elif choice == '6':
         print("Exiting the program.")
     elif choice == '7':
