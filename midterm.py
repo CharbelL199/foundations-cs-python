@@ -1,10 +1,12 @@
-
+import requests
+from bs4 import BeautifulSoup
 
 #choice 1
 class Tab:
-    def __init__(self,title,url):
+    def __init__(self,title,url,content=None):
         self.title = title
         self.url = url
+        self.content = content
         self.children = []
     
 #for tab list
@@ -16,6 +18,7 @@ class TabManager:
         new_tab = Tab(title, url)
         self.tabs.append(new_tab)
         print("Tab",title,"with url",url,"added successfully.")
+        #geeks for geeks 
         if parent_index is not None:
             parent_tab = self.tabs[parent_index]
             parent_tab.children.append(new_tab)
@@ -30,6 +33,7 @@ class TabManager:
            print("Closed tab ",closed_tab.title,"with URL",closed_tab.url,".")
            
     #choice 3       
+    # web scraping https://www.geeksforgeeks.org/python-web-scraping-tutoria
     def display_tab_content(self, index=None):
             if not self.tabs:
                 print("No tabs to display.")
@@ -42,7 +46,20 @@ class TabManager:
                 tab_to_display = self.tabs[index]
             
             print("Tabs:",tab_to_display.title,",URL:",tab_to_display.url)
-            print("Content",tab_to_display.content)
+            try:
+                # Fetch the HTML content from the URL using requests
+                response = requests.get(tab_to_display.url)
+                response.raise_for_status()
+    
+                # Parse the HTML content using BeautifulSoup
+                soup = BeautifulSoup(response.text, 'html.parser')
+    
+                # Print the parsed HTML content
+                print(soup.prettify())
+
+            except requests.exceptions.RequestException as e:
+                print(f"Error fetching content: {e}")
+                print("Content",tab_to_display.content)
                 
                         
     def print_all_tabs(self, tabs=None, indent=""):
@@ -69,7 +86,8 @@ class TabManager:
             for j in range(0,lengthTabs-i-1):
                 if self.tabs[j].title > self.tabs[j+1].title:
                     self.tabs[j],self.tabs[j+1]= self.tabs[j+1],self.tabs[j]
-                    print("Your tabs have been sorted.")
+        print("Your tabs have been sorted.")
+        
 tab_manager = TabManager()    
 
 while True:
