@@ -194,10 +194,12 @@ while True:
     elif choice == '6':
         tab_manager.sortingTabs()
     elif choice == '7':
-        file_path = input("Enter the file path to save (with type of text e.g:txt file): ")
+        file_path = input("Enter the file path you want to save (with type of text e.g:txt file): ")
         tab_manager.save_tabs_to_file(file_path)
     elif choice == '8':
         print()
+        file_path = input("Enter the file path: ")
+        tab_manager.import_tabs(file_path)
     elif choice == '9':
         print("Exiting the program.")
         break
