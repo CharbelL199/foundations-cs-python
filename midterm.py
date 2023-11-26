@@ -43,6 +43,7 @@ class TabManager:
     # web scraping https://www.geeksforgeeks.org/python-web-scraping-tutoria
     def display_tab_content(self, index=None):
             if not self.tabs:
+                # if there is no open tab
                 print("No tabs to display.")
                 return
     
