@@ -30,6 +30,7 @@ class TabManager:
     #choice 2    
     def close_tab(self,index=None):
        if index is None or not (0 <= index < len(self.tabs)):
+           #if the index is none or less than 0, it will remove the last index in the list
            closed_tab = self.tabs.pop()
            print("Closed tab ",closed_tab.title,"with URL",closed_tab.url,".")
        else:
