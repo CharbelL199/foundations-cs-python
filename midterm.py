@@ -198,7 +198,7 @@ while True:
         tab_manager.save_tabs_to_file(file_path)
     elif choice == '8':
         print()
-        file_path = input("Enter the file path: ")
+        file_path = input("Enter the file's path: ")
         tab_manager.import_tabs(file_path)
     elif choice == '9':
         print("Exiting the program.")
