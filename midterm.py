@@ -16,6 +16,7 @@ class Tab:
 #for tab list
 class TabManager:
     def __init__(self):
+        #creating a list of tabs
         self.tabs=[]
     
     def add_tab(self,title,url,content=None,parent_index=None):
@@ -34,6 +35,7 @@ class TabManager:
            closed_tab = self.tabs.pop()
            print("Closed tab ",closed_tab.title,"with URL",closed_tab.url,".")
        else:
+           # it will close the tab that the user enters for index
            closed_tab = self.tabs.pop(index)
            print("Closed tab ",closed_tab.title,"with URL",closed_tab.url,".")
            
