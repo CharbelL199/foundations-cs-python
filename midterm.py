@@ -1,3 +1,6 @@
+
+#FCS50 Midterm
+
 #this import is used for web scraping
 import requests
 from bs4 import BeautifulSoup
@@ -96,6 +99,7 @@ class TabManager:
         for i in range(lengthTabs-1):
             for j in range(0,lengthTabs-i-1):
                 if self.tabs[j].title > self.tabs[j+1].title:
+                    #it will swap the tabs if they are not in order
                     self.tabs[j],self.tabs[j+1]= self.tabs[j+1],self.tabs[j]
         print("Your tabs have been sorted.")
         
