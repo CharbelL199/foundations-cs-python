@@ -194,8 +194,8 @@ while True:
         parent_input = input("Enter the index of parent:")
         try:
             parent_index = int(parent_input)
-            title = input("Enter the title of nested:")
-            content = input("Enter the url of nested:")
+            title = input("Enter the Title of nested:")
+            content = input("Enter the Url of nested:")
             tab_manager.add_tab(title, content, parent_index)
         except ValueError:
             print("Invalid input.")
