@@ -60,7 +60,7 @@ class TabManager:
                 print(soup.prettify())
 
             except requests.exceptions.RequestException as e:
-                print("Error fetching content: ",e)
+                print("Error fetching content:",e)
                 print("Content",tab_to_display.content)
                 
                         
