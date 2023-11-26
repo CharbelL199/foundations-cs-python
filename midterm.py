@@ -144,9 +144,10 @@ class TabManager:
                 self.tabs=data
                 print("Tabs imported successfully.")
             else:
-                print("No tabs found")
+                print("No tabs imported.")
         except Exception as e:
             print("Error importing tab",e)
+            
 tab_manager = TabManager()    
 
 while True:
