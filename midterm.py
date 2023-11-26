@@ -76,6 +76,7 @@ class TabManager:
             tabs = self.tabs
 
         if not tabs:
+            #tabs list is empty
             print("No tabs to display.")
             return
 
@@ -87,6 +88,7 @@ class TabManager:
    
     def sortingTabs(self):
         if not self.tabs:
+            #tabs list is empty
             print("No tabs to sort")
             return
         
