@@ -1,6 +1,7 @@
 #this import is used for web scraping
 import requests
 from bs4 import BeautifulSoup
+#json is used to transmit and store data
 import json
 
 
