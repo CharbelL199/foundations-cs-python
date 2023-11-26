@@ -173,7 +173,7 @@ while True:
     elif choice == '6':
         tab_manager.sortingTabs()
     elif choice == '7':
-        file_path = input("Enter the file path to save")
+        file_path = input("Enter the file path to save: ")
         tab_manager.save_tabs_to_file(file_path)
     elif choice == '8':
         print()
