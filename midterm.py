@@ -162,7 +162,7 @@ while True:
     elif choice == '4':
         tab_manager.print_all_tabs()
     elif choice == '5':
-        parent_input = input("Enter the index:")
+        parent_input = input("Enter the index of parent:")
         try:
             parent_index = int(parent_input)
             title = input("Enter the title of nested:")
