@@ -134,20 +134,23 @@ class TabManager:
 
         except Exception as e:
             print("Error saving tabs:",e)
-    
+
+        
     def import_tabs(self,file_path):
-        try:
-            with open(file_path,'r')as file:
-                #load json file, r means read
-                data = json.load(file)
-            if data:
-                self.tabs=data
-                print("Tabs imported successfully.")
-            else:
-                print("No tabs imported.")
-        except Exception as e:
-            print("Error importing tab",e)
-            
+         try:
+             with open(file_path,'r')as file:
+                 #load json file, r means read
+                 data = json.load(file)
+             if data:
+                 new_tabs = [Tab(tab_data['title'],tab_data['url'],tab_data.get('content')) for tab_data in data]
+                 self.tabs.extend(new_tabs)
+                 print("Tabs imported successfully.")
+             else:
+                 print("No tabs imported.")
+         except Exception as e:
+             print("Error importing tab",e)
+       
+
 tab_manager = TabManager()    
 
 while True:
