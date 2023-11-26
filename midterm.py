@@ -140,7 +140,11 @@ class TabManager:
             with open(file_path,'r')as file:
                 #load json file, r means read
                 data = json.load(file)
-            print("Tabs imported successfully.")
+            if data:
+                self.tabs=data
+                print("Tabs imported successfully.")
+            else:
+                print("No tabs found")
         except Exception as e:
             print("Error importing tab",e)
 tab_manager = TabManager()    
