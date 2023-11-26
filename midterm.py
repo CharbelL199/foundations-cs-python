@@ -142,6 +142,7 @@ class TabManager:
                  #load json file, r means read
                  data = json.load(file)
              if data:
+                 # new_tabs will import title,url and content from the tab
                  new_tabs = [Tab(tab_data['title'],tab_data['url'],tab_data.get('content')) for tab_data in data]
                  self.tabs.extend(new_tabs)
                  print("Tabs imported successfully.")
