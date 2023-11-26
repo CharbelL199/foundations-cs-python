@@ -51,6 +51,7 @@ class TabManager:
                 # If no index provided or the index is out of range, display the content of the last opened tab
                 tab_to_display = self.tabs[-1]
             else:
+                #displays the index of the users input
                 tab_to_display = self.tabs[index]
             
             print("Tabs:",tab_to_display.title,",URL:",tab_to_display.url)
