@@ -1,4 +1,5 @@
 
+#Charbel
 #FCS50 Midterm
 
 #this import is used for web scraping
@@ -123,11 +124,11 @@ class TabManager:
                     }
                     return tab_data
 
-                # Gather data for each tab in self.tabs
+                # gather data for each tab in self.tabs
                 for tab in self.tabs:
                     tabs_data.append(gather_tab_data(tab))
 
-                # Write the gathered tab data to the file in JSON format
+                # write the gathered tab data to the file in JSON format
                 json.dump(tabs_data, file, indent=2)
 
             print("Tabs saved to",file_path,".")
